@@ -9,9 +9,9 @@ setup(
     install_requires=[
         "requests",
     ],
-    tests_require=[
-        "pytest"
-    ],
+    extras_require={
+        "tests": ["pytest", "mock"],
+    },
     entry_points={
         "console_scripts": ["run_reactor=bioreactor_client.cmd:main"]
     },

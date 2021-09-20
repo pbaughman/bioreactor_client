@@ -19,6 +19,10 @@ class ReactorApiClient:
         response = requests.get(f"{self._service_host}/bioreactor/{self._reactor_id}")
         return response.json()
 
+    def get_reactor_id(self):
+        """For informational purpose only - maybe to track where a batch was made."""
+        return self._reactor_id
+
 
 class ValveApiClient:
     """A python wrapper for the input-valve and output-valve REST APIs."""
