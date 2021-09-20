@@ -1,8 +1,9 @@
 import time
 
-from .reactor_api_client import get_reactor
 from .process_state_machine import AbortProcess
 from .process_state_machine import Start, FillReactor, RunReaction, EmptyReactor
+from .reactor_api_client import get_reactor
+from .safety_monitor import SafetyMonitor
 
 
 def main():
@@ -25,9 +26,17 @@ def main():
         )
     )
 
+    safety_monitor = SafetyMonitor(
+        max_pressure=250,
+        max_temperature=100,
+    )
     reactor = get_reactor()
     print(f"Starting reaction in reactor {reactor.get_reactor_id()}")
 
+    # TODO: In a real project, the below would be in its own method to make it easier to
+    # write tests for.  It would take a state machine, a safety monitor, and a mock reactor as
+    # an input.
+    # It would return any reporting objects needed for batch traceability.
     try:
         while not process_state.is_terminal_state():
             state_name = process_state.state_name()
@@ -38,6 +47,12 @@ def main():
             import pprint
             print(state_name)
             pprint.pprint(reactor_status)
+
+            # As a back-stop to the main state machine, make sure none of our safety critical
+            # parameters have gone out-of-bounds.
+            # I'd expect the server-side of a real reaction control system to also be performing
+            # this check
+            safety_monitor.monitor_reactor_parameters(reactor_status)
 
             # Now tick the state machine forward
             process_state = next_state
