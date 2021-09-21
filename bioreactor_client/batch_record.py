@@ -18,8 +18,8 @@ class BatchRecord:
     """
 
     def __init__(self):
-        # Each reading is a three-tuple of (timestamp, process step, reactor_data)
-        # Where timestamp is a DateTime object (in UTC)
+        # Each reading is a three-tuple of (time stamp, process step, reactor_data)
+        # Where time stamp is a DateTime object (in UTC)
         # process step is a step name like "fill" "run" from the process state machine
         # And the reactor readings are the data returned by the get_reactor_status() API
         self._readings = []
@@ -200,7 +200,7 @@ class TargetTemperatureReached(ProcessCheck):
             return False, "No run temperature data during 'run' stage"
 
         # Check that we achieved a maximum temperature within the target range
-        # Note, we check "empty" here too incase things continue to heat up
+        # Note, we check "empty" here too in case things continue to heat up
         # while we drain the tank.
         temp_range = (self._batch_record
                       .filter_by_step_name(["run", "empty"])

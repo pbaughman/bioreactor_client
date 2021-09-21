@@ -19,5 +19,5 @@ def test_running(mock_reactor):
 # Additional test cases intentionally omitted in the interest of time.
 # See `test_start_state.py` and `test_fill_state.py` to see a more complete set
 # of unit tests.
-# Because this is a coding exercice, test coverage is not as extensive as it would be
+# Because this is a coding exercise, test coverage is not as extensive as it would be
 # for real production code.

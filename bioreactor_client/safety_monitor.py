@@ -5,7 +5,7 @@ class SafetyMonitor:
     """Monitor safety critical parameters and ensure and abort if things get dangerous.
 
     This class serves as a backstop to the reactor state machine.
-    Not evey state monitors every parameter of the reaction.
+    Not every state monitors every parameter of the reaction.
 
     For example, it might be possible to have an over-pressure event while filling the reactor.
 

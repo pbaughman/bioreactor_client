@@ -58,7 +58,7 @@ def main():
         # TODO: A real tool might have some watchdog that notices when a certain process step
         # is taking too long - maybe the batch fizzles and never reaches the correct temperature
         # range.
-        # Here we're just going to print timestamps out to the console for a human to monitor.
+        # Here we're just going to print time stamps out to the console for a human to monitor.
         while not process_state.is_terminal_state():
             state_name = process_state.state_name()
             next_state, reactor_status = process_state.next_state(reactor)
@@ -77,7 +77,7 @@ def main():
                 print(f"T={t_now}, Process State={next_state.state_name()}")
             process_state = next_state
             # Note - We are somewhat limited by the API here.
-            # SOmetimes it returns quite quickly, but sometimes there are delays on
+            # Sometimes it returns quite quickly, but sometimes there are delays on
             # the order of a quarter-second.
             # It's probably not worth trying to go much faster than this.
             time.sleep(0.35)
@@ -110,7 +110,7 @@ def run_process_checks(process_checks, batch_record, process_completed):
             failures.append(msg)
 
     if failures:
-        print("The overall status of this batch is: FAILD")
+        print("The overall status of this batch is: FAILED")
         # Here you could highlight the failures again.
         # Alternatively you could set this up to only print failures
     else:

@@ -64,7 +64,6 @@ class Start(ProcessState):
     def next_state(self, reactor):
         """Do some pre-flight checks of the reactor, then open the input valve.
         """
-        # Do some pre-flight sanity checks on the reactor before kicking off the process
         if reactor.input_valve.get_valve_state() != "closed":
             raise AbortProcess("Attempted to start process but input valve was already open")
         if reactor.output_valve.get_valve_state() != "closed":
