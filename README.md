@@ -1,6 +1,6 @@
-# Resilliance Bioreactor Client
+# Resilience Bioreactor Client
 
-This python package provides a command-line client to Resilliance's bioreactor simulator API.
+This python package provides a command-line client to Resilience's bioreactor simulator API.
 
 Example usage:
 
