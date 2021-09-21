@@ -110,8 +110,14 @@ def run_process_checks(process_checks, batch_record, process_completed):
             failures.append(msg)
 
     if failures:
-        print("The overall status of this batch is: FAILED")
         # Here you could highlight the failures again.
         # Alternatively you could set this up to only print failures
+        print("The overall status of this batch is: FAILED")
+    elif not process_completed:
+        # This is defense-in-depth against the process_checks not handling
+        # an incomplete process correctly.
+        # With additional unit testing of the process checks, this becomes
+        # unnecessary
+        print("The overall status of this batch is: FAILED/INCOMPLETE")
     else:
         print("The overall status of this batch is: SUCCESS")
