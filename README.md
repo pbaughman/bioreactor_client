@@ -9,6 +9,30 @@ $ python3 -m pip install <path_to_bioreactor_client>
 $ run_reactor
 ```
 
+A successful run looks something like:
+
+```
+$ run_reactor
+Starting reaction in reactor 81990
+T=0.67, Process State=fill
+T=35.21, Process State=run
+T=113.8, Process State=empty
+T=148.72, Process State=done
+
+
+---------- Final Report ----------
+Process ran until the end
+Max level reached during fill stage was 68.714
+CPP Met. Fill level during run was 69.07% to 69.07%
+Temperature ranged from 25.0 to 79.2807316
+CPP Met.  Max temperature was 79.2807316
+pH ranged from 7 to 7
+Pressure ranged from 113 to 113
+CPP Met.  Max pressure was 113
+Batch took 0:01:18.063910s
+The overall status of this batch is: SUCCESS
+```
+
 You can also run unit tests very easily.  Ensure `tox` is installed
 
 ```
